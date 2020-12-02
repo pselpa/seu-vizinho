@@ -18,6 +18,10 @@ namespace Domain.Users
         public (IList<string> errors, bool isValid) Validate()
         {
             var errors = new List<string>();
+            if (!ValidateCPF())
+            {
+                errors.Add("CPF inválido.");
+            }
             if (!ValidateName())
             {
                 errors.Add("Nome inválido.");
