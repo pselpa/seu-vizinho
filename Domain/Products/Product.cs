@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
 
@@ -30,25 +31,23 @@ namespace Domain.Products
 
         protected bool ValidateProductName()
         {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return false;
-            }
-
-            var words = Name.Split(' ');
-            
-            foreach (var word in words)
-            {
-                if (word.Trim().Length < 2)
-                {
-                    return false;
-                }
-                if (word.Any(x => !char.IsLetter(x)))
-                {
-                    return false;
-                }
-            }
+            if (string.IsNullOrEmpty(Name)){return false;}
+            else if (string.IsNullOrEmpty(Description)){return false;}
+            else if (string.IsNullOrEmpty(Voltage)){return false;}
+            else if (string.IsNullOrEmpty(Frequency)){return false;}
+            else if (Quantity == 0){return false;}
             return true;
+        }
+
+        public (IList<string> errors, bool isValid) Validate()
+        {
+            var errors = new List<string>();
+            if (!ValidateProductName())
+            {
+                errors.Add("Algum campo obrigatório não foi preenchido.");
+            }
+            
+            return (errors, errors.Count == 0);
         }
     }
 }

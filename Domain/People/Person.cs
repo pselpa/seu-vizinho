@@ -131,5 +131,19 @@ namespace Domain.People
 
             return false;
         }
+
+        protected bool ValidateEmail()
+        {
+            if (Email != null)
+            {
+                return Regex.IsMatch(
+                Email,
+                @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
+                RegexOptions.IgnoreCase
+                );
+            }
+            return false;
+            
+        }
     }
 }

@@ -16,15 +16,6 @@ namespace Domain.Users
             Profile = profile;
         }
 
-        private bool ValidateEmail()
-        {
-            return Regex.IsMatch(
-                Email,
-                @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-                RegexOptions.IgnoreCase
-            );
-        }
-
         // Colocar o VALIDATE no usersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()
         {
@@ -36,6 +27,10 @@ namespace Domain.Users
             if (!ValidateName())
             {
                 errors.Add("Nome inválido.");
+            }
+            if (!ValidateEmail())
+            {
+                errors.Add("E-mail inválido.");
             }
             return (errors, errors.Count == 0);
         }
