@@ -28,7 +28,7 @@ namespace Domain.Products
             RentingPeriodLimit = rentingPeriodLimit;
         }
 
-        protected bool ValidateName()
+        protected bool ValidateProductName()
         {
             if (string.IsNullOrEmpty(Name))
             {

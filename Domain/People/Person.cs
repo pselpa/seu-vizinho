@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Domain.Entities;
 
 namespace Domain.People
@@ -7,7 +9,6 @@ namespace Domain.People
     public abstract class Person : Entity
     {
         public string Name { get; protected set; }
-        public string LastName { get; protected set; }
         public string CPF { get; protected set; }
         public string Email { get; protected set; }
         public string Phone { get; protected set; }
@@ -17,6 +18,7 @@ namespace Domain.People
         public string ZipCode { get; protected set; }
         public string HouseNumber { get; protected set; }
         public string AddressComplement { get; protected set; }
+        public string Password { get; protected set; }
 
         public Person(
             string name,
@@ -42,9 +44,12 @@ namespace Domain.People
             HouseNumber = houseNumber;
             AddressComplement = addressComplement;
         }
-        public Person(string name)
+        public Person(string name, string cpf, string email, string password)
         {
             Name = name;
+            CPF = cpf;
+            Email = email;
+            Password = password;
         }
 
         protected bool ValidateName()
