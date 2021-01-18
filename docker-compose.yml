@@ -1,0 +1,21 @@
+# versão do yml
+version: '3'
+# representa os containers que serão criados
+services:
+  db:
+      user: root
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      container_name: seuvizinho-db-sqlserver
+      # Nesta linha estamos espelhando a porta 1433 do container com a 1433 da nossa máquina
+      ports: 
+          - 1433:1433
+      # variáveis de ambiente (configurações)
+      environment: 
+          - 'ACCEPT_EULA=Y'
+          - 'SA_PASSWORD=some(!)Password'
+      # espelhamento de pastas entre o container e a máquina local
+      volumes: 
+          # Lado direito é o diretório/pasta do container.
+          # Lado esquerdo é o diretório/pasta da nossa máquina.
+          # ./volumes/data é um padrão que o professor mencionou que usa.
+          - ./volumes/data:/var/opt/mssql/data
