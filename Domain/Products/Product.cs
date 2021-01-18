@@ -58,7 +58,6 @@ namespace Domain.Products
             else if (string.IsNullOrEmpty(Description)){return false;}
             else if (string.IsNullOrEmpty(Voltage)){return false;}
             else if (string.IsNullOrEmpty(Frequency)){return false;}
-            else if (Quantity == 0){return false;}
             return true;
         }
 
