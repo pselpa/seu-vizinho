@@ -10,9 +10,21 @@ namespace Domain.Users
     {
         public UserProfile Profile { get; set; }
 
-        public User(string name, string cpf, string email, UserProfile profile, string password) : base(name, cpf, email, password)
+        public User(
+            string name,
+            string cpf,
+            string email,
+            string phone,
+            string state,
+            string city,
+            string district,
+            string zipcode,
+            string houseNumber,
+            string addressComplement,
+            UserProfile profile,
+            string password
+        ) : base(name, cpf, email, phone, state, city, district, zipcode, houseNumber, addressComplement, password)
         {
-            Id = Guid.NewGuid();
             Profile = profile;
         }
 

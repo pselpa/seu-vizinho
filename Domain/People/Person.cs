@@ -30,7 +30,8 @@ namespace Domain.People
             string district,
             string zipcode,
             string houseNumber,
-            string addressComplement
+            string addressComplement,
+            string password
         )
         {
             Name = name;
@@ -43,12 +44,6 @@ namespace Domain.People
             ZipCode = zipcode;
             HouseNumber = houseNumber;
             AddressComplement = addressComplement;
-        }
-        public Person(string name, string cpf, string email, string password)
-        {
-            Name = name;
-            CPF = cpf;
-            Email = email;
             Password = password;
         }
 

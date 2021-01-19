@@ -30,7 +30,7 @@ namespace Domain.Users
             var crypt = new Crypt();
             var cryptPassword = crypt.CreateMD5(password);
             
-            var user = new User(profile, name, email, cryptPassword);
+            var user = new User(name, cpf, email, phone, state, city, district, zipcode, houseNumber, addressComplement, password);
             var userValidation = user.Validate();
 
             if (userValidation.isValid)
