@@ -1,6 +1,6 @@
 using System;
 
-namespace Domain.Entities
+namespace Domain.Common
 {
     // Abstract, pois não devemos instanciar a classe Entity. Ela é apenas um modelo.
     public abstract class Entity
