@@ -7,7 +7,7 @@ namespace Domain.Products
     
     public class Rents : Entity
     {
-        User Costumer { get; set; }
+        User Customer { get; set; }
         Product ProductRented { get; set; }
         public DateTime Date { get; set; }
         public DateTime ContractStartDate { get; set; }
