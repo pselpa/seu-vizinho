@@ -1,5 +1,5 @@
 using System;
-using Domain.Entities;
+using Domain.Common;
 using Domain.Users;
 
 namespace Domain.Products

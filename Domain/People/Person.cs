@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Domain.Entities;
+using Domain.Common;
 
 namespace Domain.People
 {

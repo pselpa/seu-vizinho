@@ -12,7 +12,7 @@ namespace Tests
         [InlineData("F")]
         public void Should_return_false_when_name_is_invalid(string name)
         {
-            var product = new Product(name, "Chave de fenda n° 2", "", "", "", "", "", null, 0, null, null, null, null);
+            var product = new Product(name, "Chave de fenda n° 2", "", "", "", "", "", 0, 0, 0, 0, 0, 0);
 
             var productIsValid = product.Validate().isValid;
 
@@ -24,7 +24,7 @@ namespace Tests
         [InlineData("")]
         public void Should_return_false_when_description_is_invalid(string description)
         {
-            var product = new Product("chave de fenda", description, "", "", "", "", "", null, 0, null, null, null, null);
+            var product = new Product("chave de fenda", description, "", "", "", "", "", 0, 0, 0, 0, 0, 0);
 
             var productIsValid = product.Validate().isValid;
 
@@ -32,7 +32,6 @@ namespace Tests
         }
 
         [Theory]
-        [InlineData(null, null, null, null, null, null, null, null, null, null)]
         [InlineData(null, null, null, null, null, 0, 0, 0, 0, 0)]
         [InlineData("", "", "", "", "", 0, 0, 0, 0, 0)]
         public void Should_return_true_when_nonobligatory_items_are_null_empty_or_zero(string accessories, string brand, string model, string voltage, string frequency, double pricePerHour, double pricePerDayByWeek, double pricePerDayByBiweekly, double pricePerDayByMonth, int rentingPeriodLimit)
