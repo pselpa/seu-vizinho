@@ -46,7 +46,7 @@ namespace Domain.Products
             Frequency = frequency;
             PricePerHour = pricePerHour;
             PricePerDay = pricePerDay;
-            PricePerDayByWeek= pricePerDayByWeek;
+            PricePerDayByWeek = pricePerDayByWeek;
             PricePerDayByBiweekly= pricePerDayByBiweekly;
             PricePerDayByMonth = pricePerDayByMonth;
             RentingPeriodLimit = rentingPeriodLimit;
@@ -54,10 +54,33 @@ namespace Domain.Products
 
         protected bool ValidateProductName()
         {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return false;
+            }
+
+            var words = Name.Split(' ');
+
+            foreach (var word in words)
+            {
+                if (words.Length < 2 && word.Trim().Length < 2)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        protected bool ValidateProduct()
+        {
             if (string.IsNullOrEmpty(Name)){return false;}
             else if (string.IsNullOrEmpty(Description)){return false;}
-            else if (string.IsNullOrEmpty(Voltage)){return false;}
-            else if (string.IsNullOrEmpty(Frequency)){return false;}
+            else if (PricePerHour < 0){return false;}
+            else if (PricePerDay < 0 || PricePerDay == null){return false;}
+            else if (PricePerDayByweek < 0){return false;}
+            else if (PricePerDayByBiweekly < 0){return false;}
+            else if (PricePerDayByMonth < 0){return false;}
+            else if (RentingPeriodLimit < 0){return false;}
             return true;
         }
 
@@ -65,6 +88,10 @@ namespace Domain.Products
         {
             var errors = new List<string>();
             if (!ValidateProductName())
+            {
+                errors.Add("Algum campo obrigatório não foi preenchido.");
+            }
+            if (!ValidateProduct())
             {
                 errors.Add("Algum campo obrigatório não foi preenchido.");
             }
