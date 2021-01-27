@@ -5,7 +5,7 @@ using Domain.Users;
 namespace Domain.Products
 {
     
-    public class Rents : Entity
+    public class Rent : Entity
     {
         User Customer { get; set; }
         Product ProductRented { get; set; }
