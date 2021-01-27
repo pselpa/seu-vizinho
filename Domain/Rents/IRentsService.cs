@@ -1,12 +1,14 @@
-using System.Collections.Generic;
+using Domain.Users;
+using Domain.Products;
+using System;
 
 namespace Domain.Rents
 {
     public interface IRentsService
     {
-        CreateRentDTO Create(
+        CreatedRentDTO Create(
             User customer,
-            Product productRented,
+            Product rentedProduct,
             DateTime date,
             DateTime contractStarDate,
             DateTime contractEndDate,

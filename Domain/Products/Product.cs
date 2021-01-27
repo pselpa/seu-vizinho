@@ -76,7 +76,7 @@ namespace Domain.Products
             if (string.IsNullOrEmpty(Name)){return false;}
             else if (string.IsNullOrEmpty(Description)){return false;}
             else if (PricePerHour < 0){return false;}
-            else if (PricePerDay < 0){return false;}
+            else if (PricePerDay <= 0){return false;}
             else if (PricePerDayByWeek < 0){return false;}
             else if (PricePerDayByBiweekly < 0){return false;}
             else if (PricePerDayByMonth < 0){return false;}

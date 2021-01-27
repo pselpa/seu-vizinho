@@ -4,7 +4,7 @@ namespace Domain.Products
 {
     public interface IProductService
     {
-        CreateProductDTO Create(
+        CreatedProductDTO Create(
             string name,
             string description,
             string accessories,

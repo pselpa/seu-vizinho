@@ -14,9 +14,9 @@ namespace Infra
                 .HasForeignKey<Customer>(rent => rent.Customer);
 
             builder
-                .HasOne(rent => rent.ProductRented)
-                .WithOne(productrented => productrented.Rent)
-                .HasForeignKey<ProductRented>(rent => rent.ProductRented);
+                .HasOne(rent => rent.RentedProduct)
+                .WithOne(rentedproduct => rentedproduct.Rent)
+                .HasForeignKey<RentedProduct>(rent => rent.RentedProduct);
 
             builder
                 .Property(rent => rent.Observation)

@@ -8,7 +8,7 @@ namespace Domain.Products
     {
         private readonly IRepository<Product> _repository;
 
-        public RentsRepository(IRepository<Product> repository)
+        public ProductsRepository(IRepository<Product> repository)
         {
             _repository = repository;
         }

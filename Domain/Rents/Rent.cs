@@ -8,7 +8,7 @@ namespace Domain.Products
     public class Rent : Entity
     {
         User Customer { get; set; }
-        Product ProductRented { get; set; }
+        Product RentedProduct { get; set; }
         public DateTime Date { get; set; }
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
@@ -16,6 +16,19 @@ namespace Domain.Products
         public int AmountOfDays { get; set; }
         public double RentalValue { get; set;}
         public string Observation { get; set; }
+
+        public Rent(User customer, Product rentedProduct, DateTime date, DateTime contractStartDate, DateTime contractEndDate, int amountOfHours, int amountOfDays, double rentalValue, string observation)
+        {
+            Customer = customer;
+            RentedProduct = rentedProduct;
+            Date = date;
+            ContractStartDate = contractStartDate;
+            ContractEndDate = contractEndDate;
+            AmountOfHours = amountOfHours;
+            AmountOfDays = amountOfDays;
+            RentalValue = rentalValue;
+            Observation = observation;            
+        }
 
         public double CalculateRent(Product product, int amountOfHours, int amountOfDays)
         {

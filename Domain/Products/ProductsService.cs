@@ -11,7 +11,7 @@ namespace Domain.Products
             _productsRepository = productsRepository;
         }
 
-        public CreateProductDTO Create(
+        public CreatedProductDTO Create(
             string name,
             string description,
             string accessories,
@@ -47,10 +47,9 @@ namespace Domain.Products
             if (ProductValidation.isValid)
             {
                 _productsRepository.Add(product);
-                return new CreateProductDTO(product.Id);
+                return new CreatedProductDTO(product.Id);
             }
-
-            return new CreateProductDTO(ProductValidation.errors);
+            return new CreatedProductDTO(ProductValidation.errors);
         }
     }
 }

@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using Domain.Products;
+using Domain.Users;
 
 namespace Domain.Rents
 {
@@ -12,9 +15,9 @@ namespace Domain.Rents
 
         public CreatedRentDTO Create(
             User customer,
-            Product productRented,
+            Product rentedProduct,
             DateTime date,
-            DateTime contractStarDate,
+            DateTime contractStartDate,
             DateTime contractEndDate,
             int amountOfHours,
             int amountOfDays,
@@ -24,9 +27,9 @@ namespace Domain.Rents
         {
             var rent = new Rent(
                 customer,
-                productRented,
+                rentedProduct,
                 date,
-                contractStarDate,
+                contractStartDate,
                 contractEndDate,
                 amountOfHours,
                 amountOfDays,
@@ -42,6 +45,11 @@ namespace Domain.Rents
             }
 
             return new CreatedRentDTO(RentValidation.errors);
+        }
+
+        public Rent GetById(Guid id)
+        {
+            return _rentsRepository.GetById(id);
         }
     }
 }

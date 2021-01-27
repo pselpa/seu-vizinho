@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Domain.Rents
 {
-    public class CreateRentDTO
+    public class CreatedRentDTO
     {
         public Guid Id { get; private set; }
         public IList<string> Errors { get; set; }
         public bool IsValid { get; set; }
     
-        public CreateRentDTO(Guid id)
+        public CreatedRentDTO(Guid id)
         {
             Id = id;
             IsValid = true;

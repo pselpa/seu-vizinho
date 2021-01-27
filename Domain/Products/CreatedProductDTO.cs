@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Domain.Products
 {
-    public class CreateProductDTO
+    public class CreatedProductDTO
     {
         public Guid Id { get; private set; }
         public IList<string> Errors { get; set; }
         public bool IsValid { get; set; }
     
-        public CreateProductDTO(Guid id)
+        public CreatedProductDTO(Guid id)
         {
             Id = id;
             IsValid = true;
