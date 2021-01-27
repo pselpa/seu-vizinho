@@ -1,3 +1,5 @@
+using Domain.Products;
+using Domain.Users;
 using Domain.Rents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

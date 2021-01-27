@@ -1,6 +1,6 @@
 using System;
 using Domain.Common;
-using System.Linq;
+using Domain.Products;
 
 namespace Domain.Rents
 {
@@ -23,7 +23,7 @@ namespace Domain.Rents
             return _repository.Get(predicate);
         }
 
-        public Rent Get(Guid id)
+        public Rent GetById(Guid id)
         {
             return _repository.Get(x => x.Id == id);
         }
