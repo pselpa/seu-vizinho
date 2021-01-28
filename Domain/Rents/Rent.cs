@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Domain.Common;
 using Domain.Users;
 
@@ -56,6 +57,28 @@ namespace Domain.Products
             }
             else return amountOfDays * product.PricePerDayByMonth;
             
+        }
+
+        protected bool ValidateRent() // *** Verificar se devem ser incluidos outros itens.
+        {
+            if (Customer == null){return false;}
+            else if (RentedProduct == null){return false;}
+            else if (Date == null){return false;}
+            else if (ContractStartDate == null){return false;}
+            else if (ContractEndDate == null){return false;}
+            else if (RentalValue <= 0){return false;}
+            return true;
+        }
+
+
+        public (IList<string> errors, bool isValid) Validate()
+        {
+            var errors = new List<string>();
+            if (!ValidateRent())
+            {
+                errors.Add("Algum campo obrigatório não foi preenchido ou possui valor inválido.");
+            }
+            return (errors, errors.Count == 0);
         }
         
     }

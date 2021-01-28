@@ -93,9 +93,8 @@ namespace Domain.Products
             }
             if (!ValidateProduct())
             {
-                errors.Add("Algum campo obrigatório não foi preenchido.");
+                errors.Add("Algum campo obrigatório não foi preenchido ou possui valor inválido.");
             }
-            
             return (errors, errors.Count == 0);
         }
     }
