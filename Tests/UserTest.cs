@@ -22,7 +22,7 @@ namespace Tests
         [InlineData("Raf@el Rodrigues")]
         public void Should_return_false_when_name_is_invalid(string name)
         {
-            var user = new User(name, "084.538.989-01","fulano@gmail.com", UserProfile.Admin, "password");
+            var user = new User(name, "084.538.989-01","fulano@gmail.com", "", "", "", "", "", "", "", UserProfile.Admin, "password");
 
             var userIsValid = user.Validate().isValid;
 
@@ -37,7 +37,7 @@ namespace Tests
         public void Should_return_true_when_name_is_valid(string name)
         {
             // Dado / Setup            
-            var user = new User(name, "493.107.310-79","fulano@gmail.com", UserProfile.Admin, "password");
+            var user = new User(name, "493.107.310-79","fulano@gmail.com", "", "", "", "", "", "", "", UserProfile.Admin, "password");
 
             // When / Ação
             var userIsValid = user.Validate().isValid;
@@ -61,7 +61,7 @@ namespace Tests
         public void Should_return_false_when_CPF_is_invalid(string cpf)
         {
             // Dado / Setup
-            var user = new User("Maria Pereira", cpf, "fulano@gmail.com", UserProfile.Admin, "password");
+            var user = new User("Maria Pereira", cpf, "fulano@gmail.com", "", "", "", "", "", "", "", UserProfile.Admin, "password");
 
             // When / Ação
             var isValid = user.Validate().isValid;
@@ -79,7 +79,7 @@ namespace Tests
         public void Should_return_true_when_CPF_is_valid(string cpf)
         {
             // Dado / Setup
-            var user = new User("Maria Pereira", cpf, "maria@gmail.com", UserProfile.Client, "password");
+            var user = new User("Maria Pereira", cpf, "maria@gmail.com", "", "", "", "", "", "", "", UserProfile.Admin, "password");
 
             // When / Ação
             var isValid = user.Validate().isValid;
@@ -101,7 +101,7 @@ namespace Tests
         public void Should_return_false_when_email_is_invalid(string email)
         {
             // Dado / Setup
-            var user = new User("Maria Pereira", "493.107.310-79", email, UserProfile.Client, "password");
+            var user = new User("Maria Pereira", "493.107.310-79", email, "", "", "", "", "", "", "", UserProfile.Client, "password");
 
             // When / Ação
             var isValid = user.Validate().isValid;
@@ -119,7 +119,7 @@ namespace Tests
         public void Should_return_true_when_email_is_valid(string email)
         {
             // Dado / Setup
-            var user = new User("Maria Pereira", "493.107.310-79", email, UserProfile.Client, "password");
+            var user = new User("Maria Pereira", "493.107.310-79", email, "", "", "", "", "", "", "", UserProfile.Client, "password");
 
             // When / Ação
             var isValid = user.Validate().isValid;

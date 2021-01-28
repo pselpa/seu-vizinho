@@ -32,14 +32,22 @@ namespace WebAPI.Controllers.Users
                 return Unauthorized();
             }
 
-            if (user.Profile == UserProfile.Fan)
+            if (request.Profile == UserProfile.Admin && user.Profile != UserProfile.Admin)
             {
                 return Unauthorized();
             }
 
             var response = _usersService.Create(
                 request.Name,
+                request.CPF,
                 request.Email,
+                request.Phone,
+                request.State,
+                request.City,
+                request.District,
+                request.Zipcode,
+                request.HouseNumber,
+                request.AddressComplement,
                 request.Profile,
                 request.Password
             );
