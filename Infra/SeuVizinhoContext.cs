@@ -14,18 +14,19 @@ namespace Infra
 
         // Override pois estamos sobrescrevendo o comportamento padrão.
 
-        protected override void OnConfiguring(DbContextBuilder optionsBuilder)
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
         // Initial Catalog = nome do banco de dados que será criado
         // PWD = Password
         optionsBuilder.UseSqlServer("Data Source=localhost;User Id=sa;PWD=some(!)Password;Initial Catalog=SeuVizinho");
-    }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        /* Nesta linha estamos informando ao EF de onde
-        ele irá ler as configurações de mapeamento das entidades */
-        modelBuilder.ApplyConfigurationsFromAssembly(
-            Assembly.GetExecutingAssembly()
-        );
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /* Nesta linha estamos informando ao EF de onde
+            ele irá ler as configurações de mapeamento das entidades */
+            modelBuilder.ApplyConfigurationsFromAssembly(
+                Assembly.GetExecutingAssembly()
+            );
+        }
     }
 }

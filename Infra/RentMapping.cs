@@ -6,19 +6,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra
 {
-    public class RentMapping : IEntityTypeConfiguration<User>
+    public class RentMapping : IEntityTypeConfiguration<Rent>
     {
         public void Configure(EntityTypeBuilder<Rent> builder)
         {
             builder
-                .HasOne(rent => rent.Customer)
-                .WithOne(customer => customer.Rent)
-                .HasForeignKey<Customer>(rent => rent.Customer);
+                .HasOne(rent => rent.Customer);
 
             builder
-                .HasOne(rent => rent.RentedProduct)
-                .WithOne(rentedproduct => rentedproduct.Rent)
-                .HasForeignKey<RentedProduct>(rent => rent.RentedProduct);
+                .HasOne(rent => rent.RentedProduct);
 
             builder
                 .Property(rent => rent.Observation)

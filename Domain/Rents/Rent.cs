@@ -8,8 +8,9 @@ namespace Domain.Products
     
     public class Rent : Entity
     {
-        User Customer { get; set; }
-        Product RentedProduct { get; set; }
+        public virtual User Customer { get; set; }
+        public  Guid CustomerId { get; set; }
+        public Product RentedProduct { get; set; }
         public DateTime Date { get; set; }
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
