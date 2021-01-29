@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Domain.Products
 {
-    public interface IProductService
+    public interface IProductsService
     {
         CreatedProductDTO Create(
             string name,

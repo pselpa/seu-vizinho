@@ -8,19 +8,19 @@ namespace Domain.Products
     public class Product : Entity
     {
         // Potência, alimentação e acessórios devem ser colocados na descrição.
-        public string Name { get; protected set; } // Exclusivo no banco de dados, fazer teste
-        public string Description { get; protected set; }
-        public string Accessories { get; protected set; }
-        public string Brand { get; protected set; }
-        public string Model { get; protected set; }
-        public string Voltage { get; protected set; }
-        public string Frequency { get; protected set; }
-        public double PricePerHour { get; protected set; }
-        public double PricePerDay { get; protected set; }
-        public double PricePerDayByWeek { get; protected set; }
-        public double PricePerDayByBiweekly { get; protected set; }
-        public double PricePerDayByMonth { get; protected set; }
-        public int RentingPeriodLimit { get; protected set; } //Definir se a pessoa aluga as peças por apenas um determinado período de tempo.
+        public string Name { get; set; } // Exclusivo no banco de dados, fazer teste
+        public string Description { get; set; }
+        public string Accessories { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public string Voltage { get; set; }
+        public string Frequency { get; set; }
+        public double PricePerHour { get; set; }
+        public double PricePerDay { get; set; }
+        public double PricePerDayByWeek { get; set; }
+        public double PricePerDayByBiweekly { get; set; }
+        public double PricePerDayByMonth { get; set; }
+        public int RentingPeriodLimit { get; set; } //Definir se a pessoa aluga as peças por apenas um determinado período de tempo.
 
         public Product(
             string name,

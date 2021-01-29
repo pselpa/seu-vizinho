@@ -1,6 +1,5 @@
 using System;
 using Domain.Common;
-using System.Linq;
 
 namespace Domain.Products
 {

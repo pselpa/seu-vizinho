@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Domain.Products
 {
-    public class ProductsService : IProductService
+    public class ProductsService : IProductsService
     {
         private readonly IProductsRepository _productsRepository;
 
