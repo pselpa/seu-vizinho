@@ -1,15 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Products
 {
-    public class ProductsService : IProductsService
+    public class ProductsService
     {
-        private readonly IProductsRepository _productsRepository;
-
-        public ProductsService(IProductsRepository productsRepository)
-        {
-            _productsRepository = productsRepository;
-        }
+        private readonly ProductsRepository _productsRepository;
 
         public CreatedProductDTO Create(
             string name,
@@ -50,6 +46,11 @@ namespace Domain.Products
                 return new CreatedProductDTO(product.Id);
             }
             return new CreatedProductDTO(ProductValidation.errors);
+        }
+
+        public Guid? Remove(Guid id)
+        {
+            return _productsRepository.Remove(id);
         }
     }
 }

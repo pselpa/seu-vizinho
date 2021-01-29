@@ -1,30 +1,40 @@
 using System;
 using Domain.Common;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Products
 {
-    public class ProductsRepository: IProductsRepository
+    public class ProductsRepository
     {
-        private readonly IRepository<Product> _repository;
+        private static List<Product> _products = new List<Product>();
 
-        public ProductsRepository(IRepository<Product> repository)
-        {
-            _repository = repository;
-        }
+        public static IReadOnlyCollection<Product> Products => _products;
 
         public void Add(Product product)
         {
-            _repository.Add(product);
+            _products.Add(product);
         }
 
         public Product Get(Func<Product, bool> predicate)
         {
-            return _repository.Get(predicate);
+            return _products.FirstOrDefault(predicate);
         }
 
         public Product Get(Guid id)
         {
-            return _repository.Get(x => x.Id == id);
+            return _products.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Guid? Remove(Guid id)
+        {
+            var product = _products.FirstOrDefault(x => x.Id == id);
+            if (product == null)
+            {
+                return null;
+            }
+            _products.Remove(product);
+            return id;
         }
     }
 }

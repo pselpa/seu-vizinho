@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Products
@@ -19,5 +20,9 @@ namespace Domain.Products
             double pricePerDayByMonth,
             int rentingPeriodLimit
         );
+
+
+        public Guid? Remove(Guid id);
     }
+    
 }
