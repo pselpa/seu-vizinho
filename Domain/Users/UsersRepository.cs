@@ -21,5 +21,10 @@ namespace Domain.Users
         {
             return _repository.Get(predicate);
         }
+
+        public User Get(Guid id)
+        {
+            return _repository.Get(id);
+        }
     }
 }

@@ -15,19 +15,20 @@ namespace Domain.Rents
 
         public CreatedRentDTO Create(
             User customer,
-            Guid CustomerId,
+            Guid customerId,
             Product rentedProduct,
             DateTime date,
             DateTime contractStartDate,
             DateTime contractEndDate,
             int amountOfHours,
             int amountOfDays,
-            int rentalValue,
+            double rentalValue,
             string observation
         )
         {
             var rent = new Rent(
                 customer,
+                customerId,
                 rentedProduct,
                 date,
                 contractStartDate,

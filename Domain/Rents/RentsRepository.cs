@@ -23,7 +23,7 @@ namespace Domain.Rents
             return _repository.Get(predicate);
         }
 
-        public Rent GetById(Guid id)
+        public Rent Get(Guid id)
         {
             return _repository.Get(id);
         }

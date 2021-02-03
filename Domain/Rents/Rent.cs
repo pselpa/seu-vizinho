@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Domain.Common;
 using Domain.Users;
+using Domain.Products;
 
-namespace Domain.Products
+namespace Domain.Rents
 {
     
     public class Rent : Entity
@@ -19,9 +20,10 @@ namespace Domain.Products
         public double RentalValue { get; set;}
         public string Observation { get; set; }
 
-        public Rent(User customer, Product rentedProduct, DateTime date, DateTime contractStartDate, DateTime contractEndDate, int amountOfHours, int amountOfDays, double rentalValue, string observation)
+        public Rent(User customer, Guid customerId, Product rentedProduct, DateTime date, DateTime contractStartDate, DateTime contractEndDate, int amountOfHours, int amountOfDays, double rentalValue, string observation)
         {
             Customer = customer;
+            CustomerId = customerId;
             RentedProduct = rentedProduct;
             Date = date;
             ContractStartDate = contractStartDate;
