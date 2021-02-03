@@ -25,7 +25,7 @@ namespace Domain.Rents
 
         public Rent GetById(Guid id)
         {
-            return _repository.Get(x => x.Id == id);
+            return _repository.Get(id);
         }
     }
 }

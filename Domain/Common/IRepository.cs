@@ -6,5 +6,7 @@ namespace Domain.Common
     {
         void Add(T entity);
         T Get(Func<T, bool> predicate);
+
+        T Get(Guid id);
     }
 }

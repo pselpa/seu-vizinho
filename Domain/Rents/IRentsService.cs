@@ -8,14 +8,17 @@ namespace Domain.Rents
     {
         CreatedRentDTO Create(
             User customer,
+            Guid CustomerId,
             Product rentedProduct,
             DateTime date,
             DateTime contractStarDate,
             DateTime contractEndDate,
             int amountOfHours,
             int amountOfDays,
-            int rentalValue,
+            double rentalValue,
             string observation
         );
+
+        Rent GetById(Guid id);
     }
 }

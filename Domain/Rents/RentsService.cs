@@ -15,6 +15,7 @@ namespace Domain.Rents
 
         public CreatedRentDTO Create(
             User customer,
+            Guid CustomerId,
             Product rentedProduct,
             DateTime date,
             DateTime contractStartDate,
@@ -49,7 +50,7 @@ namespace Domain.Rents
 
         public Rent GetById(Guid id)
         {
-            return _rentsRepository.GetById(id);
+            return _rentsRepository.Get(id);
         }
     }
 }

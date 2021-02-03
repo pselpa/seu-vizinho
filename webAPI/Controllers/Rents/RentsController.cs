@@ -32,11 +32,6 @@ namespace WebAPI.Controllers.Rents
                 return Unauthorized();
             }
 
-            if (request.Profile == UserProfile.Admin && user.Profile != UserProfile.Admin)
-            {
-                return Unauthorized();
-            }
-
             var response = _rentsService.Create(
                 request.Customer,
                 request.CustomerId,
@@ -47,7 +42,6 @@ namespace WebAPI.Controllers.Rents
                 request.AmountOfHours,
                 request.AmountOfDays,
                 request.RentalValue,
-                request.AddressComplement,
                 request.Observation
             );
 

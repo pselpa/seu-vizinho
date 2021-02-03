@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using Domain.Products;
+using Domain.Users;
 
 namespace WebAPI.Controllers.Rents
 {
