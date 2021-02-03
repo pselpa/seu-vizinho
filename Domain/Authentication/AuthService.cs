@@ -15,7 +15,7 @@ namespace Domain.Authentication
 
         public AuthResponse Login(string email, string password)
         {
-             var user = _usersRepository.Get(x => x.Email == email);
+            var user = _usersRepository.Get(x => x.Email == email);
             if (user == null)
             {
                 return new AuthResponse();
