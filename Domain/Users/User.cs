@@ -28,6 +28,11 @@ namespace Domain.Users
             Profile = profile;
         }
 
+        protected User() : base("name", "cpf", "email", "phone", "state", "city", "district", "zipcode", "houseNumber", "addressComplement", "password")
+        {
+            
+        }
+
         // Colocar o VALIDATE no usersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()
         {

@@ -34,6 +34,11 @@ namespace Domain.Rents
             Observation = observation;            
         }
 
+        protected Rent()
+        {
+            
+        }
+
         public double CalculateRent(Product product, int amountOfHours, int amountOfDays)
         {
             // Testar o algoritmo de cálculo
