@@ -86,6 +86,11 @@ namespace Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AddressComplement", "CPF", "City", "District", "Email", "HouseNumber", "Name", "Password", "Phone", "Profile", "State", "ZipCode" },
+                values: new object[] { new Guid("1b529f1d-2381-4ac8-80f6-d237fdf75a10"), "Casa", "24068108013", "Blumenau", "Centro", "admin@email.com", "999", "System Admin", "0192023A7BBD73250516F069DF18B500", "47999999999", 0, "SC", "89000000" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Rents_CustomerId",
                 table: "Rents",

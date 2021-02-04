@@ -181,6 +181,24 @@ namespace Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1b529f1d-2381-4ac8-80f6-d237fdf75a10"),
+                            AddressComplement = "Casa",
+                            CPF = "24068108013",
+                            City = "Blumenau",
+                            District = "Centro",
+                            Email = "admin@email.com",
+                            HouseNumber = "999",
+                            Name = "System Admin",
+                            Password = "0192023A7BBD73250516F069DF18B500",
+                            Phone = "47999999999",
+                            Profile = 0,
+                            State = "SC",
+                            ZipCode = "89000000"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Rents.Rent", b =>
