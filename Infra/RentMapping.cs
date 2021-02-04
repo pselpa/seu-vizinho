@@ -9,30 +9,32 @@ namespace Infra
     {
         public void Configure(EntityTypeBuilder<Rent> builder)
         {
-            builder
-                .Property(rent => rent.Customer);
+            // builder
+            //     .Property(rent => rent.Customer);
 
-            builder
-                .Property(rent => rent.CustomerId)
-                .HasMaxLength(50);
+            // builder
+            //     .Property(rent => rent.CustomerId);
 
-            builder
-                .Property(rent => rent.Date);
+            // builder
+            //     .Property(rent => rent.RentedProduct);
 
-            builder
-                .Property(rent => rent.ContractStartDate);
+            // builder
+            //     .Property(rent => rent.Date);
 
-            builder
-                .Property(rent => rent.ContractEndDate);
+            // builder
+            //     .Property(rent => rent.ContractStartDate);
 
-            builder
-                .Property(rent => rent.AmountOfHours);
+            // builder
+            //     .Property(rent => rent.ContractEndDate);
 
-            builder
-                .Property(rent => rent.AmountOfDays);
+            // builder
+            //     .Property(rent => rent.AmountOfHours);
 
-            builder
-                .Property(rent => rent.RentalValue);
+            // builder
+            //     .Property(rent => rent.AmountOfDays);
+
+            // builder
+            //     .Property(rent => rent.RentalValue);
 
             builder
                 .Property(rent => rent.Observation)

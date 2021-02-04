@@ -51,6 +51,10 @@ namespace Infra
                 .HasMaxLength(100);
 
             builder
+                .Property(user => user.Profile)
+                .HasMaxLength(100);
+
+            builder
                 .Property(user => user.Password)
                 .IsRequired()
                 .HasMaxLength(50);
