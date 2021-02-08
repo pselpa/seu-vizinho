@@ -43,7 +43,7 @@ namespace Domain.Users
 
         public User GetById(Guid id)
         {
-            return _usersRepository.Get(x => x.Id == id);
+            return _usersRepository.Get(id);
         }
     }
 }

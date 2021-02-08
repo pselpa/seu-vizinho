@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Domain.Products
 {
@@ -23,6 +22,8 @@ namespace Domain.Products
 
 
         public Guid? Remove(Guid id);
+
+        Product GetById(Guid id);
     }
     
 }

@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Rents;
+using Domain.Users;
 using Microsoft.Extensions.Primitives;
 
 namespace WebAPI.Controllers.Rents
@@ -10,8 +11,10 @@ namespace WebAPI.Controllers.Rents
     public class RentsController : ControllerBase
     {
         public readonly IRentsService _rentsService;
-        public RentsController(IRentsService rentsService)
+        public readonly IUsersService _usersService;
+        public RentsController(IUsersService usersService, IRentsService rentsService)
         {
+            _usersService = usersService;
             _rentsService = rentsService;
         }
 
@@ -19,15 +22,15 @@ namespace WebAPI.Controllers.Rents
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Create(CreateRentRequest request)
         {
-            StringValues rentId;
-            if(!Request.Headers.TryGetValue("RentId", out rentId))
+            StringValues userId;
+            if(!Request.Headers.TryGetValue("UserId", out userId))
             {
                 return Unauthorized();
             }
 
-            var rent = _rentsService.GetById(Guid.Parse(rentId));
+            var user = _usersService.GetById(Guid.Parse(userId));
 
-            if (rent == null)
+            if (user == null)
             {
                 return Unauthorized();
             }

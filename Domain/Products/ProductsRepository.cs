@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Domain.Products
 {
-    public class ProductsRepository
+    public class ProductsRepository: IProductsRepository
     {
         private static List<Product> _products = new List<Product>();
 

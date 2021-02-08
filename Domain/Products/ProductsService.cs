@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Products
 {
-    public class ProductsService
+    public class ProductsService : IProductsService
     {
         private readonly ProductsRepository _productsRepository;
 
@@ -51,6 +51,11 @@ namespace Domain.Products
         public Guid? Remove(Guid id)
         {
             return _productsRepository.Remove(id);
+        }
+
+        public Product GetById(Guid id)
+        {
+            return _productsRepository.Get(id);
         }
     }
 }

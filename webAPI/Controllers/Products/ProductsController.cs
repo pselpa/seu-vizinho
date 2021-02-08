@@ -62,7 +62,20 @@ namespace WebAPI.Controllers.Products
                 return BadRequest(response.Errors);
             }
            
-            return Ok(response.Id);
+            return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var product = _productsService.GetById(id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(product);
         }
 
 

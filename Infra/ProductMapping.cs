@@ -15,7 +15,7 @@ namespace Infra
 
             builder
                 .Property(product => product.Description)
-                .HasMaxLength(100);
+                .HasMaxLength(200);
 
             builder
                 .Property(product => product.Accessories)
@@ -23,20 +23,19 @@ namespace Infra
 
             builder
                 .Property(product => product.Brand)
-                .HasMaxLength(100);
+                .HasMaxLength(50);
 
             builder
                 .Property(product => product.Model)
-                .HasMaxLength(100);
+                .HasMaxLength(50);
             
             builder
                 .Property(product => product.Voltage)
-                .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(20);
 
             builder
                 .Property(product => product.Frequency)
-                .HasMaxLength(50);
+                .HasMaxLength(20);
         }
     }
 }

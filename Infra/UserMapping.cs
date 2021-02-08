@@ -63,7 +63,7 @@ namespace Infra
 
             builder
                 .Property(user => user.HouseNumber)
-                .HasMaxLength(20);
+                .HasMaxLength(10);
             
             builder
                 .Property(user => user.AddressComplement)
@@ -77,6 +77,10 @@ namespace Infra
                 .Property(user => user.Password)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder
+                .HasIndex(user => user.Email)
+                .IsUnique();
         }
     }
 }

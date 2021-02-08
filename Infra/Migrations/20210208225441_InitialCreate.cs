@@ -13,12 +13,12 @@ namespace Infra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Accessories = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Brand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Voltage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Frequency = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Brand = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Voltage = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Frequency = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     PricePerHour = table.Column<double>(type: "float", nullable: false),
                     PricePerDay = table.Column<double>(type: "float", nullable: false),
                     PricePerDayByWeek = table.Column<double>(type: "float", nullable: false),
@@ -45,7 +45,7 @@ namespace Infra.Migrations
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     District = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ZipCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    HouseNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    HouseNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AddressComplement = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
@@ -89,7 +89,7 @@ namespace Infra.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AddressComplement", "CPF", "City", "District", "Email", "HouseNumber", "Name", "Password", "Phone", "Profile", "State", "ZipCode" },
-                values: new object[] { new Guid("1b529f1d-2381-4ac8-80f6-d237fdf75a10"), "Casa", "24068108013", "Blumenau", "Centro", "admin@email.com", "999", "System Admin", "0192023A7BBD73250516F069DF18B500", "47999999999", 0, "SC", "89000000" });
+                values: new object[] { new Guid("a3c14336-ea29-40fb-932c-b82f14e552fc"), "Casa", "24068108013", "Blumenau", "Centro", "admin@email.com", "999", "System Admin", "0192023A7BBD73250516F069DF18B500", "47999999999", 0, "SC", "89000000" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rents_CustomerId",
@@ -100,6 +100,12 @@ namespace Infra.Migrations
                 name: "IX_Rents_RentedProductId",
                 table: "Rents",
                 column: "RentedProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
