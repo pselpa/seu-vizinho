@@ -34,7 +34,7 @@ namespace WebAPI.Controllers.Users
                     return Unauthorized();
                 }
 
-                if (request.Profile == UserProfile.Admin && user.Profile != UserProfile.Admin)
+                if (user.Profile != UserProfile.Admin)
                 {
                     return Unauthorized();
                 }
