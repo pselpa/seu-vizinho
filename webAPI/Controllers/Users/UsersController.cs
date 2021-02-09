@@ -17,76 +17,77 @@ namespace WebAPI.Controllers.Users
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult CreateAdmin(CreateUserRequest request)
+        public IActionResult Create(CreateUserRequest request)
         {
-            StringValues userId;
-            if(!Request.Headers.TryGetValue("UserId", out userId))
+            if (request.Profile == UserProfile.Admin)
             {
-                return Unauthorized();
+                StringValues userId;
+                if(!Request.Headers.TryGetValue("UserId", out userId))
+                {
+                    return Unauthorized();
+                }
+
+                var user = _usersService.GetById(Guid.Parse(userId));
+
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+
+                if (request.Profile == UserProfile.Admin && user.Profile != UserProfile.Admin)
+                {
+                    return Unauthorized();
+                }
+
+                var response = _usersService.Create(
+                    request.Name,
+                    request.CPF,
+                    request.Email,
+                    request.Phone,
+                    request.State,
+                    request.City,
+                    request.District,
+                    request.Zipcode,
+                    request.HouseNumber,
+                    request.AddressComplement,
+                    request.Profile,
+                    request.Password
+                );
+
+                if (!response.IsValid)
+                {
+                    return BadRequest(response.Errors);
+                }
+
+                return NoContent();
+            }
+            else
+            {
+                var response = _usersService.Create(
+                    request.Name,
+                    request.CPF,
+                    request.Email,
+                    request.Phone,
+                    request.State,
+                    request.City,
+                    request.District,
+                    request.Zipcode,
+                    request.HouseNumber,
+                    request.AddressComplement,
+                    request.Profile,
+                    request.Password
+                );
+
+                if (!response.IsValid)
+                {
+                    return BadRequest(response.Errors);
+                }
+
+                return NoContent();
             }
 
-            var user = _usersService.GetById(Guid.Parse(userId));
-
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            if (request.Profile == UserProfile.Admin && user.Profile != UserProfile.Admin)
-            {
-                return Unauthorized();
-            }
-
-            var response = _usersService.Create(
-                request.Name,
-                request.CPF,
-                request.Email,
-                request.Phone,
-                request.State,
-                request.City,
-                request.District,
-                request.Zipcode,
-                request.HouseNumber,
-                request.AddressComplement,
-                request.Profile,
-                request.Password
-            );
-
-            if (!response.IsValid)
-            {
-                return BadRequest(response.Errors);
-            }
-
-            return NoContent();
+            
         }
-
-        // [HttpPost]
-        // public IActionResult CreateClient(CreateUserRequest request)
-        // {
-        //     if (request.Profile == UserProfile.Client)
-        //     {
-        //         var response = _usersService.Create(
-        //         request.Name,
-        //         request.CPF,
-        //         request.Email,
-        //         request.Phone,
-        //         request.State,
-        //         request.City,
-        //         request.District,
-        //         request.Zipcode,
-        //         request.HouseNumber,
-        //         request.AddressComplement,
-        //         request.Profile,
-        //         request.Password
-        //         );
-
-        //         if (!response.IsValid)
-        //         {
-        //             return BadRequest(response.Errors);
-        //         }
-        //     }
-        //     return NoContent();
-        // }
 
 
         [HttpGet("{id}")]
