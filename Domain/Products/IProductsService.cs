@@ -20,8 +20,7 @@ namespace Domain.Products
             int rentingPeriodLimit
         );
 
-
-        public Guid? Remove(Guid id);
+        Product Remove(Guid id);
 
         Product GetById(Guid id);
     }

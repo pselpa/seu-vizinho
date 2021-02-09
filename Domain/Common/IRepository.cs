@@ -9,5 +9,7 @@ namespace Domain.Common
         T Get(Func<T, bool> predicate);
 
         T Get(Guid id);
+
+        T Remove(Guid Id);
     }
 }

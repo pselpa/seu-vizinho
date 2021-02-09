@@ -1,9 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Common;
 using Domain.Users;
+using Domain.Products;
+using Domain.Rents;
 using Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,8 @@ namespace webAPI
             services.AddScoped(typeof (IRepository<>), typeof (Repository<>));
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddSwaggerGen(c =>
             {

@@ -5,7 +5,12 @@ namespace Domain.Products
 {
     public class ProductsService : IProductsService
     {
-        private readonly ProductsRepository _productsRepository;
+        private readonly IProductsRepository _productsRepository;
+
+        public ProductsService(IProductsRepository productsRepository)
+        {
+            _productsRepository = productsRepository;
+        }
 
         public CreatedProductDTO Create(
             string name,
@@ -48,14 +53,14 @@ namespace Domain.Products
             return new CreatedProductDTO(ProductValidation.errors);
         }
 
-        public Guid? Remove(Guid id)
-        {
-            return _productsRepository.Remove(id);
-        }
-
         public Product GetById(Guid id)
         {
             return _productsRepository.Get(id);
+        }
+
+        public Product Remove(Guid id)
+        {
+            return _productsRepository.Remove(id);
         }
     }
 }
