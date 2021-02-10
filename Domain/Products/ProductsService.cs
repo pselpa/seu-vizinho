@@ -60,6 +60,11 @@ namespace Domain.Products
 
         public Product Remove(Guid id)
         {
+            var product = _productsRepository.Get(id);
+            if (product == null)
+            {
+                return null;
+            }
             return _productsRepository.Remove(id);
         }
     }

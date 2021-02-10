@@ -53,5 +53,10 @@ namespace Domain.Rents
         {
             return _rentsRepository.Get(id);
         }
+
+        public Rent Remove(Guid id)
+        {
+            return _rentsRepository.Remove(id);
+        }
     }
 }

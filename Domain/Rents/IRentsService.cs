@@ -20,5 +20,7 @@ namespace Domain.Rents
         );
 
         Rent GetById(Guid id);
+
+        Rent Remove(Guid id);
     }
 }

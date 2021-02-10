@@ -26,5 +26,17 @@ namespace Domain.Users
         {
             return _repository.Get(id);
         }
+
+        public User Remove(Guid id)
+        {
+            var user = _repository.Get(id);
+            if (user == null) 
+            {
+                return null;
+            }
+            _repository.Remove(id);
+            return user;
+        }
+
     }
 }

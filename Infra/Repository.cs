@@ -30,5 +30,18 @@ namespace Infra
                 return db.Set<T>().SingleOrDefault(x => x.Id == id);
             }
         }
+
+        public T Remove(Guid id)
+        {
+            using (var db = new SeuVizinhoContext())
+            {
+                db.Set<T>().SingleOrDefault(x => x.Id == id);
+                if (db != null)
+                {
+                    db.Remove(id);
+                }
+                return null;
+            }
+        }
     }
 }

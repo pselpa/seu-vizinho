@@ -20,9 +20,9 @@ namespace Domain.Products
             int rentingPeriodLimit
         );
 
-        Product Remove(Guid id);
-
         Product GetById(Guid id);
+
+        Product Remove(Guid id);
     }
     
 }
