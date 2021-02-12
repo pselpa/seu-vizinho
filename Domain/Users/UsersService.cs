@@ -45,10 +45,5 @@ namespace Domain.Users
         {
             return _usersRepository.Get(id);
         }
-
-        public User Remove(Guid id)
-        {
-            return _usersRepository.Remove(id);
-        }
     }
 }

@@ -22,7 +22,7 @@ namespace Domain.Products
 
         Product GetById(Guid id);
 
-        Product Remove(Guid id);
+        void Remove(Guid id);
     }
     
 }

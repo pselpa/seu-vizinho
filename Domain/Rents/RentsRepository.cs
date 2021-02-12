@@ -28,15 +28,9 @@ namespace Domain.Rents
             return _repository.Get(id);
         }
 
-        public Rent Remove(Guid id)
+        public void Remove(Rent entity)
         {
-            var rent = _repository.Get(id);
-            if (rent == null) 
-            {
-                return null;
-            }
-            _repository.Remove(id);
-            return rent;
+            _repository.Remove(entity);
         }
     }
 }

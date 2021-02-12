@@ -25,15 +25,9 @@ namespace Infra
             return _entities.FirstOrDefault(x => x.Id == id);
         }
 
-        public T Remove(Guid id)
+        public void Remove(T entity)
         {
-            var ent = _entities.FirstOrDefault(x => x.Id == id);
-            if (ent != null)
-            {
-                _entities.Remove(ent);
-                return null;
-            }
-            return null;
+            _entities.Remove(entity);
         }
     }
 }

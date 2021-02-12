@@ -20,7 +20,5 @@ namespace Domain.Users
         );
 
         User GetById(Guid id);
-
-        User Remove(Guid id);
     }
 }

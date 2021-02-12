@@ -99,37 +99,5 @@ namespace WebAPI.Controllers.Users
             
             return Ok(user);
         }
-
-        [HttpDelete("{id}")]
-        public IActionResult Remove(Guid id)
-        {
-            StringValues userId;
-            if(!Request.Headers.TryGetValue("UserId", out userId))
-            {
-                return Unauthorized();
-            }
-
-            var user = _usersService.GetById(Guid.Parse(userId));
-            
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            if (user.Profile != UserProfile.Admin)
-            {
-                return Unauthorized();
-            }
-
-            var removedProduct = _usersService.Remove(id);
-
-            if (removedProduct == null)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }
-
     }
 }

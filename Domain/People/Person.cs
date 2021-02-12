@@ -47,6 +47,8 @@ namespace Domain.People
             Password = password;
         }
 
+        public Person(Guid id) : base(id) {}
+
         protected bool ValidateName()
         {
             if (string.IsNullOrEmpty(Name))

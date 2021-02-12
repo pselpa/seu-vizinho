@@ -10,6 +10,6 @@ namespace Domain.Common
 
         T Get(Guid id);
 
-        T Remove(Guid Id);
+        void Remove(T entity);
     }
 }

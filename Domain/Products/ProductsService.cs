@@ -58,14 +58,10 @@ namespace Domain.Products
             return _productsRepository.Get(id);
         }
 
-        public Product Remove(Guid id)
+        public void Remove(Guid id)
         {
-            var product = _productsRepository.Get(id);
-            if (product == null)
-            {
-                return null;
-            }
-            return _productsRepository.Remove(id);
+            var product = new Product(id);
+            _productsRepository.Remove(product);
         }
     }
 }

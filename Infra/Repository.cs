@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Domain.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra
 {
@@ -31,16 +32,12 @@ namespace Infra
             }
         }
 
-        public T Remove(Guid id)
+        public void Remove(T entity)
         {
             using (var db = new SeuVizinhoContext())
             {
-                db.Set<T>().SingleOrDefault(x => x.Id == id);
-                if (db != null)
-                {
-                    db.Remove(id);
-                }
-                return null;
+                db.Entry(entity).State = EntityState.Deleted;
+                db.SaveChanges();
             }
         }
     }

@@ -34,10 +34,9 @@ namespace Domain.Rents
             Observation = observation;            
         }
 
-        protected Rent()
-        {
-            
-        }
+        protected Rent() {}
+
+        public Rent(Guid id) : base(id) {}
 
         public double CalculateRent(Product product, int amountOfHours, int amountOfDays)
         {

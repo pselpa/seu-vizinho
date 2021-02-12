@@ -28,9 +28,9 @@ namespace Domain.Users
         }
 
         protected User() : base("name", "cpf", "email", "phone", "state", "city", "district", "zipcode", "houseNumber", "addressComplement", "password")
-        {
-            
-        }
+        {}
+
+        public User(Guid id) : base(id) {}
 
         // Colocar o VALIDATE no usersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()

@@ -27,15 +27,9 @@ namespace Domain.Products
             return _repository.Get(id);
         }
 
-        public Product Remove(Guid id)
+        public void Remove(Product entity)
         {
-            var product = _repository.Get(id);
-            if (product == null) 
-            {
-                return null;
-            }
-            _repository.Remove(id);
-            return product;
+            _repository.Remove(entity);
         }
     }
 }

@@ -27,15 +27,9 @@ namespace Domain.Users
             return _repository.Get(id);
         }
 
-        public User Remove(Guid id)
+        public void Remove(User entity)
         {
-            var user = _repository.Get(id);
-            if (user == null) 
-            {
-                return null;
-            }
-            _repository.Remove(id);
-            return user;
+            _repository.Remove(entity);
         }
 
     }

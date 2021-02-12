@@ -83,13 +83,13 @@ namespace WebAPI.Controllers.Products
         public IActionResult Remove(Guid id)
         {
             StringValues userId;
-            if(!Request.Headers.TryGetValue("UserId", out userId))
+            if (!Request.Headers.TryGetValue("UserId", out userId))
             {
                 return Unauthorized();
             }
 
             var user = _usersService.GetById(Guid.Parse(userId));
-            
+
             if (user == null)
             {
                 return Unauthorized();
@@ -100,14 +100,9 @@ namespace WebAPI.Controllers.Products
                 return Unauthorized();
             }
 
-            var removedProduct = _productsService.Remove(id);
-
-            if (removedProduct == null)
-            {
-                return NotFound();
-            }
-
+            _productsService.Remove(id);
             return NoContent();
+            
         }
 
 
