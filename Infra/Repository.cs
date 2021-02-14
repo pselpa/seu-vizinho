@@ -20,7 +20,7 @@ namespace Infra
         {
             using (var db = new SeuVizinhoContext())
             {
-                return db.Find<T>(predicate);
+                return db.Set<T>().FirstOrDefault(predicate);
             }
         }
 

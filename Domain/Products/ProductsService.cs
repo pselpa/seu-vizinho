@@ -53,6 +53,11 @@ namespace Domain.Products
             return new CreatedProductDTO(ProductValidation.errors);
         }
 
+        public Product Get(Func<Product, bool> predicate)
+        {
+            return _productsRepository.Get(predicate);
+        }
+
         public Product GetById(Guid id)
         {
             return _productsRepository.Get(id);

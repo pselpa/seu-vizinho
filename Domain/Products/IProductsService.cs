@@ -20,6 +20,8 @@ namespace Domain.Products
             int rentingPeriodLimit
         );
 
+        Product Get(Func<Product, bool> predicate);
+
         Product GetById(Guid id);
 
         void Remove(Guid id);

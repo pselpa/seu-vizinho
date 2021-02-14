@@ -65,10 +65,27 @@ namespace WebAPI.Controllers.Products
             return NoContent();
         }
 
+
+                //   ******* USAR QUERYSTRING - NÃO DÁ PRA USAR O MESMO ENDPOINT
+
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             var product = _productsService.GetById(id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(product);
+        }
+
+
+        [HttpGet("{name}")]
+        public IActionResult GetByName(string name)   // Alterar para pesquisar por parte do nome
+        {
+            var product = _productsService.Get(x => x.Name == name);
             
             if (product == null)
             {
