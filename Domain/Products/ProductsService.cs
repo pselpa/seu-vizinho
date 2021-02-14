@@ -58,6 +58,11 @@ namespace Domain.Products
             return _productsRepository.Get(predicate);
         }
 
+        public IEnumerable<Product> GetAll(Func<Product, bool> predicate)
+        {
+            return _productsRepository.GetAll(predicate);
+        }
+
         public Product GetById(Guid id)
         {
             return _productsRepository.Get(id);

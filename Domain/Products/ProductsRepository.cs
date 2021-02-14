@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Domain.Common;
 
 namespace Domain.Products
@@ -20,6 +21,11 @@ namespace Domain.Products
         public Product Get(Func<Product, bool> predicate)
         {
             return _repository.Get(predicate);
+        }
+
+        public IEnumerable<Product> GetAll(Func<Product, bool> predicate)
+        {
+            return _repository.GetAll(predicate);
         }
 
         public Product Get(Guid id)

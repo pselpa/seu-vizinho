@@ -3,7 +3,7 @@ using Domain.Users;
 using Domain.Products;
 using Microsoft.Extensions.Primitives;
 using System;
-
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers.Products
 {
@@ -82,10 +82,29 @@ namespace WebAPI.Controllers.Products
         }
 
 
-        [HttpGet("{name}")]
-        public IActionResult GetByName(string name)   // Alterar para pesquisar por parte do nome
+        [HttpGet()]
+        public IActionResult GetByParameter([FromQuery] Dictionary<string, string> model)   // Alterar para pesquisar por parte do nome
         {
-            var product = _productsService.Get(x => x.Name == name);
+            var product = _productsService.GetAll(x => {
+                bool matches = true;
+                if (model.TryGetValue("name", out string name)) 
+                {
+                    matches = matches && x.Name == name;
+                }
+                if (model.TryGetValue("brand", out string brand)) 
+                {
+                    matches = matches && x.Brand == brand;
+                }
+                if (model.TryGetValue("voltage", out string voltage)) 
+                {
+                    matches = matches && x.Voltage == voltage;
+                }
+                if (model.TryGetValue("frequency", out string frequency)) 
+                {
+                    matches = matches && x.Frequency == frequency;
+                }
+                return matches;
+            });
             
             if (product == null)
             {

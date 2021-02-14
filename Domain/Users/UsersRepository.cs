@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Domain.Common;
 
 namespace Domain.Users
@@ -20,6 +21,11 @@ namespace Domain.Users
         public User Get(Func<User, bool> predicate)
         {
             return _repository.Get(predicate);
+        }
+
+        public IEnumerable<User> GetAll(Func<User, bool> predicate)
+        {
+            return _repository.GetAll(predicate);
         }
 
         public User Get(Guid id)

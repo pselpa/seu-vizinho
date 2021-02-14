@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Domain.Common;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,14 @@ namespace Infra
                 return db.Set<T>().FirstOrDefault(predicate);
             }
         }
+
+        public IEnumerable<T> GetAll(Func<T, bool> predicate)
+        {
+            using (var db = new SeuVizinhoContext())
+            {
+                return db.Set<T>().Where(predicate).ToArray();
+            }
+        }        
 
         public T Get(Guid id)
         {

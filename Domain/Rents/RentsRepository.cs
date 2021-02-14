@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Domain.Common;
 using Domain.Products;
 
@@ -21,6 +22,11 @@ namespace Domain.Rents
         public Rent Get(Func<Rent, bool> predicate)
         {
             return _repository.Get(predicate);
+        }
+
+        public IEnumerable<Rent> GetAll(Func<Rent, bool> predicate)
+        {
+            return _repository.GetAll(predicate);
         }
 
         public Rent Get(Guid id)

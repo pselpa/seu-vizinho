@@ -20,6 +20,11 @@ namespace Infra
             return _entities.FirstOrDefault(predicate);
         }
 
+        public IEnumerable<T> GetAll(Func<T, bool> predicate)
+        {
+            return _entities.Where(predicate);
+        }
+
         public T Get(Guid id)
         {
             return _entities.FirstOrDefault(x => x.Id == id);

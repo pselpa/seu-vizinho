@@ -49,6 +49,11 @@ namespace Domain.Rents
             return new CreatedRentDTO(RentValidation.errors);
         }
 
+        public IEnumerable<Rent> GetAll(Func<Rent, bool> predicate)
+        {
+            return _rentsRepository.GetAll(predicate);
+        }
+
         public Rent GetById(Guid id)
         {
             return _rentsRepository.Get(id);

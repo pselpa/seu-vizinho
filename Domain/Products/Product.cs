@@ -55,6 +55,8 @@ namespace Domain.Products
 
         public Product(Guid id) : base(id) {}
 
+        public Product() {}
+
         protected bool ValidateProductName()
         {
             if (string.IsNullOrEmpty(Name))
