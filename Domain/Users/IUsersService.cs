@@ -12,7 +12,7 @@ namespace Domain.Users
             string state,
             string city,
             string district,
-            string zipcode,
+            string zipCode,
             string houseNumber,
             string addressComplement,
             UserProfile profile,
@@ -20,5 +20,7 @@ namespace Domain.Users
         );
 
         User GetById(Guid id);
+
+        void Modify(User user);
     }
 }

@@ -39,10 +39,10 @@ namespace WebAPI.Controllers.Rents
                 request.Customer,
                 request.CustomerId,
                 request.RentedProduct,
+                request.RentedProductId,
                 request.Date,
                 request.ContractStartDate,
                 request.ContractEndDate,
-                request.AmountOfHours,
                 request.AmountOfDays,
                 request.RentalValue,
                 request.Observation
@@ -67,6 +67,49 @@ namespace WebAPI.Controllers.Rents
             }
             
             return Ok(rent);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateRent(Guid id, [FromBody] CreateRentRequest request)
+        {
+            StringValues userId;
+            if (!Request.Headers.TryGetValue("UserId", out userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Profile != UserProfile.Admin && user.Id != request.CustomerId)
+            {
+                return Unauthorized();
+            }
+
+            var rent = _rentsService.GetById(id);
+            if (rent == null)
+            {
+                return NotFound();
+            }
+
+            rent.Customer = request.Customer;
+            rent.CustomerId = request.CustomerId;
+            rent.RentedProduct = request.RentedProduct;
+            rent.RentedProductId = request.RentedProductId;
+            rent.Date = request.Date;
+            rent.ContractStartDate = request.ContractStartDate;
+            rent.ContractEndDate = request.ContractEndDate;
+            rent.AmountOfDays = request.AmountOfDays;
+            rent.RentalValue = request.RentalValue;
+            rent.RentalValue = request.RentalValue;
+            
+            _rentsService.Modify(rent);
+            return NoContent();
+            
         }
     }
 }

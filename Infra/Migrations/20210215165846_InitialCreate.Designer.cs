@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(SeuVizinhoContext))]
-    [Migration("20210208225441_InitialCreate")]
+    [Migration("20210215165846_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,18 +55,6 @@ namespace Infra.Migrations
                     b.Property<double>("PricePerDay")
                         .HasColumnType("float");
 
-                    b.Property<double>("PricePerDayByBiweekly")
-                        .HasColumnType("float");
-
-                    b.Property<double>("PricePerDayByMonth")
-                        .HasColumnType("float");
-
-                    b.Property<double>("PricePerDayByWeek")
-                        .HasColumnType("float");
-
-                    b.Property<double>("PricePerHour")
-                        .HasColumnType("float");
-
                     b.Property<int>("RentingPeriodLimit")
                         .HasColumnType("int");
 
@@ -85,11 +73,8 @@ namespace Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AmountOfDays")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AmountOfHours")
-                        .HasColumnType("int");
+                    b.Property<TimeSpan>("AmountOfDays")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("ContractEndDate")
                         .HasColumnType("datetime2");
@@ -110,7 +95,7 @@ namespace Infra.Migrations
                     b.Property<double>("RentalValue")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("RentedProductId")
+                    b.Property<Guid>("RentedProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -189,7 +174,7 @@ namespace Infra.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a3c14336-ea29-40fb-932c-b82f14e552fc"),
+                            Id = new Guid("d081529d-4525-4474-b5a4-96cab0d80f90"),
                             AddressComplement = "Casa",
                             CPF = "24068108013",
                             City = "Blumenau",
@@ -215,7 +200,9 @@ namespace Infra.Migrations
 
                     b.HasOne("Domain.Products.Product", "RentedProduct")
                         .WithMany()
-                        .HasForeignKey("RentedProductId");
+                        .HasForeignKey("RentedProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 

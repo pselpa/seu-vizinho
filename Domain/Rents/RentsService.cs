@@ -17,11 +17,11 @@ namespace Domain.Rents
             User customer,
             Guid customerId,
             Product rentedProduct,
+            Guid rentedProductId,
             DateTime date,
             DateTime contractStartDate,
             DateTime contractEndDate,
-            int amountOfHours,
-            int amountOfDays,
+            TimeSpan amountOfDays,
             double rentalValue,
             string observation
         )
@@ -30,10 +30,10 @@ namespace Domain.Rents
                 customer,
                 customerId,
                 rentedProduct,
+                rentedProductId,
                 date,
                 contractStartDate,
                 contractEndDate,
-                amountOfHours,
                 amountOfDays,
                 rentalValue,
                 observation
@@ -57,6 +57,11 @@ namespace Domain.Rents
         public Rent GetById(Guid id)
         {
             return _rentsRepository.Get(id);
+        }
+
+        public void Modify(Rent rent)
+        {
+            _rentsRepository.Modify(rent);
         }
     }
 }

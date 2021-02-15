@@ -47,7 +47,7 @@ namespace WebAPI.Controllers.Users
                     request.State,
                     request.City,
                     request.District,
-                    request.Zipcode,
+                    request.ZipCode,
                     request.HouseNumber,
                     request.AddressComplement,
                     request.Profile,
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers.Users
                     request.State,
                     request.City,
                     request.District,
-                    request.Zipcode,
+                    request.ZipCode,
                     request.HouseNumber,
                     request.AddressComplement,
                     request.Profile,
@@ -86,6 +86,52 @@ namespace WebAPI.Controllers.Users
                 return NoContent();
             }            
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(Guid id, [FromBody] CreateUserRequest request)
+        {
+            StringValues userId;
+            if (!Request.Headers.TryGetValue("UserId", out userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            if (user.CPF != request.CPF)
+            {
+                return Unauthorized();
+            }
+
+            var modifiedUser = _usersService.GetById(id);
+            if (modifiedUser == null)
+            {
+                return NotFound();
+            }
+
+            modifiedUser.Name = request.Name;
+            modifiedUser.CPF = request.CPF;
+            modifiedUser.Email = request.Email;
+            modifiedUser.Phone = request.Phone;
+            modifiedUser.State = request.State;
+            modifiedUser.City = request.City;
+            modifiedUser.District = request.District;
+            modifiedUser.ZipCode = request.ZipCode;
+            modifiedUser.HouseNumber = request.HouseNumber;
+            modifiedUser.AddressComplement = request.AddressComplement;
+            modifiedUser.Profile = request.Profile;
+            modifiedUser.Password = request.Password;
+
+            _usersService.Modify(modifiedUser);
+            return NoContent();
+            
+        }
+
+        
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)

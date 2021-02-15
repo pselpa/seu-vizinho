@@ -20,11 +20,7 @@ namespace Domain.Products
             string model,
             string voltage,
             string frequency,
-            double pricePerHour,
             double pricePerDay,
-            double pricePerDayByWeek,
-            double pricePerDayByWeekly,
-            double pricePerDayByMonth,
             int rentingPeriodLimit
         )
         {
@@ -36,11 +32,7 @@ namespace Domain.Products
                 model,
                 voltage,
                 frequency,
-                pricePerHour,
                 pricePerDay,
-                pricePerDayByWeek,
-                pricePerDayByWeekly,
-                pricePerDayByMonth,
                 rentingPeriodLimit
             );
             var ProductValidation = product.Validate();

@@ -16,11 +16,7 @@ namespace Domain.Products
         public string Model { get; set; }
         public string Voltage { get; set; }
         public string Frequency { get; set; }
-        public double PricePerHour { get; set; }
         public double PricePerDay { get; set; }
-        public double PricePerDayByWeek { get; set; }
-        public double PricePerDayByBiweekly { get; set; }
-        public double PricePerDayByMonth { get; set; }
         public int RentingPeriodLimit { get; set; } //Definir se a pessoa aluga as peças por apenas um determinado período de tempo.
 
         public Product(
@@ -31,11 +27,7 @@ namespace Domain.Products
             string model,
             string voltage,
             string frequency,
-            double pricePerHour,
             double pricePerDay,
-            double pricePerDayByWeek,
-            double pricePerDayByBiweekly,
-            double pricePerDayByMonth,
             int rentingPeriodLimit)
         {
             Name = name;
@@ -45,11 +37,7 @@ namespace Domain.Products
             Model = model;
             Voltage = voltage;
             Frequency = frequency;
-            PricePerHour = pricePerHour;
             PricePerDay = pricePerDay;
-            PricePerDayByWeek = pricePerDayByWeek;
-            PricePerDayByBiweekly= pricePerDayByBiweekly;
-            PricePerDayByMonth = pricePerDayByMonth;
             RentingPeriodLimit = rentingPeriodLimit;
         }
 
@@ -80,11 +68,7 @@ namespace Domain.Products
         {
             if (string.IsNullOrEmpty(Name)){return false;}
             else if (string.IsNullOrEmpty(Description)){return false;}
-            else if (PricePerHour < 0){return false;}
             else if (PricePerDay <= 0){return false;}
-            else if (PricePerDayByWeek < 0){return false;}
-            else if (PricePerDayByBiweekly < 0){return false;}
-            else if (PricePerDayByMonth < 0){return false;}
             else if (RentingPeriodLimit < 0){return false;}
             return true;
         }

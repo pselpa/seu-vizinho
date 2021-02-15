@@ -17,17 +17,17 @@ namespace Domain.Users
             string state,
             string city,
             string district,
-            string zipcode,
+            string zipCode,
             string houseNumber,
             string addressComplement,
             UserProfile profile,
             string password
-        ) : base(name, cpf, email, phone, state, city, district, zipcode, houseNumber, addressComplement, password)
+        ) : base(name, cpf, email, phone, state, city, district, zipCode, houseNumber, addressComplement, password)
         {
             Profile = profile;
         }
 
-        protected User() : base("name", "cpf", "email", "phone", "state", "city", "district", "zipcode", "houseNumber", "addressComplement", "password")
+        protected User() : base("name", "cpf", "email", "phone", "state", "city", "district", "ziCcode", "houseNumber", "addressComplement", "password")
         {}
 
         public User(Guid id) : base(id) {}

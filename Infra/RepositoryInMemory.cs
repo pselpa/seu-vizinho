@@ -1,44 +1,41 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using Domain.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Domain.Common;
 
-// namespace Infra
-// {
-//     public class RepositoryInMemory<T> : IRepository<T> where T : Entity
-//     {
-//         private List<T> _entities = new List<T>();
-//         public IReadOnlyCollection<T> Entities => _entities;
+namespace Infra
+{
+    public class RepositoryInMemory<T> : IRepository<T> where T : Entity
+    {
+        private List<T> _entities = new List<T>();
+        public IReadOnlyCollection<T> Entities => _entities;
 
-//         public void Add(T entity)
-//         {
-//             _entities.Add(entity);
-//         }
+        public void Add(T entity)
+        {
+            _entities.Add(entity);
+        }
 
-//         public T Get(Func<T, bool> predicate)
-//         {
-//             return _entities.FirstOrDefault(predicate);
-//         }
+        public T Get(Func<T, bool> predicate)
+        {
+            return _entities.FirstOrDefault(predicate);
+        }
 
-//         public IEnumerable<T> GetAll(Func<T, bool> predicate)
-//         {
-//             return _entities.Where(predicate);
-//         }
+        public IEnumerable<T> GetAll(Func<T, bool> predicate)
+        {
+            return _entities.Where(predicate);
+        }
 
-//         public T Get(Guid id)
-//         {
-//             return _entities.FirstOrDefault(x => x.Id == id);
-//         }
+        public T Get(Guid id)
+        {
+            return _entities.FirstOrDefault(x => x.Id == id);
+        }
 
-//         public void Modify(T entity)
-//         {
-//            var ent = _entities.
-            
-//         }
+        public void Modify(T entity)
+        {}
 
-//         public void Remove(T entity)
-//         {
-//             _entities.Remove(entity);
-//         }
-//     }
-// }
+        public void Remove(T entity)
+        {
+            _entities.Remove(entity);
+        }
+    }
+}

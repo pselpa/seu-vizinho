@@ -12,23 +12,23 @@ namespace Domain.Rents
         public virtual User Customer { get; set; }
         public  Guid CustomerId { get; set; }
         public Product RentedProduct { get; set; }
+        public  Guid RentedProductId { get; set; }
         public DateTime Date { get; set; }
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
-        public int AmountOfHours { get; set; }
-        public int AmountOfDays { get; set; }
+        public TimeSpan AmountOfDays { get; set; }
         public double RentalValue { get; set;}
         public string Observation { get; set; }
 
-        public Rent(User customer, Guid customerId, Product rentedProduct, DateTime date, DateTime contractStartDate, DateTime contractEndDate, int amountOfHours, int amountOfDays, double rentalValue, string observation)
+        public Rent(User customer, Guid customerId, Product rentedProduct, Guid rentedProductId, DateTime date, DateTime contractStartDate, DateTime contractEndDate, TimeSpan amountOfDays, double rentalValue, string observation)
         {
             Customer = customer;
             CustomerId = customerId;
             RentedProduct = rentedProduct;
+            RentedProductId = rentedProductId;
             Date = date;
             ContractStartDate = contractStartDate;
             ContractEndDate = contractEndDate;
-            AmountOfHours = amountOfHours;
             AmountOfDays = amountOfDays;
             RentalValue = rentalValue;
             Observation = observation;            
@@ -38,41 +38,26 @@ namespace Domain.Rents
 
         public Rent(Guid id) : base(id) {}
 
-        public double CalculateRent(Product product, int amountOfHours, int amountOfDays)
+        public double CalculateRent(Guid productId, DateTime ContractStartDate, DateTime ContractEndDate, TimeSpan amountOfDays)
         {
-            // Testar o algoritmo de cálculo
-            const int maxHoursPerDay = 8;
-            const int week = 7;
-            const int biweekly = 15;
-            const int month = 30;
+            var product = new Product(productId);
 
-            if ((amountOfHours > 0) && (amountOfHours < maxHoursPerDay))
-            {
-                return amountOfHours * product.PricePerHour;
-            }
-            else if (amountOfDays < week)
-            {
-                return amountOfDays * product.PricePerDay;
-            }
-            else if (amountOfDays < biweekly)
-            {
-                return amountOfDays * product.PricePerDayByWeek;
-            }
-            else if (amountOfDays < month)
-            {
-                return amountOfDays * product.PricePerDayByBiweekly;
-            }
-            else return amountOfDays * product.PricePerDayByMonth;
+            amountOfDays = ContractEndDate - ContractStartDate;
+            var result = product.PricePerDay * amountOfDays.Days;
             
+            return result;            
         }
 
-        protected bool ValidateRent() // *** Verificar se devem ser incluidos outros itens.
+        protected bool ValidateRent()
         {
             if (Customer == null){return false;}
             else if (RentedProduct == null){return false;}
             else if (Date == null){return false;}
             else if (ContractStartDate == null){return false;}
+            else if (ContractStartDate < DateTime.Now){return false;}
             else if (ContractEndDate == null){return false;}
+            else if (ContractEndDate < DateTime.Now){return false;}
+            else if (ContractStartDate > ContractEndDate){return false;}
             else if (RentalValue <= 0){return false;}
             return true;
         }

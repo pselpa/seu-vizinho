@@ -20,7 +20,7 @@ namespace Domain.Users
             string state,
             string city,
             string district,
-            string zipcode,
+            string zipCode,
             string houseNumber,
             string addressComplement,
             UserProfile profile,
@@ -30,7 +30,7 @@ namespace Domain.Users
             var crypt = new Crypt();
             var cryptPassword = crypt.CreateMD5(password);
             
-            var user = new User(name, cpf, email, phone, state, city, district, zipcode, houseNumber, addressComplement, profile, cryptPassword);
+            var user = new User(name, cpf, email, phone, state, city, district, zipCode, houseNumber, addressComplement, profile, cryptPassword);
             var userValidation = user.Validate();
 
             if (userValidation.isValid)
@@ -44,6 +44,11 @@ namespace Domain.Users
         public User GetById(Guid id)
         {
             return _usersRepository.Get(id);
+        }
+
+        public void Modify(User user)
+        {
+            _usersRepository.Modify(user);
         }
     }
 }

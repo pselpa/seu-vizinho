@@ -13,11 +13,7 @@ namespace Domain.Products
             string model,
             string voltage,
             string frequency,
-            double pricePerHour,
             double pricePerDay,
-            double pricePerDayByWeek,
-            double pricePerDayByWeekly,
-            double pricePerDayByMonth,
             int rentingPeriodLimit
         );
 
@@ -27,7 +23,7 @@ namespace Domain.Products
 
         Product GetById(Guid id);
 
-        void Modify(Product product); // ARRUMAR ID
+        void Modify(Product product);
 
         void Remove(Guid id);
     }

@@ -11,7 +11,7 @@ namespace WebAPI.Controllers.Users
         public string State { get; set; }
         public string City { get; set; }
         public string District { get; set; }
-        public string Zipcode { get; set; }
+        public string ZipCode { get; set; }
         public string HouseNumber { get; set; }
         public string AddressComplement { get; set; }
         public UserProfile Profile { get; set; }

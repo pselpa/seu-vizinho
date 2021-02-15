@@ -45,17 +45,13 @@ namespace WebAPI.Controllers.Products
             
             var response = _productsService.Create(
                 request.Name,
-                request.Description, 
-                request.Accessories, 
-                request.Brand, 
-                request.Model, 
-                request.Voltage, 
-                request.Frequency, 
-                request.PricePerHour, 
-                request.PricePerDay, 
-                request.PricePerDayByWeek, 
-                request.PricePerDayByBiweekly, 
-                request.PricePerDayByMonth, 
+                request.Description,
+                request.Accessories,
+                request.Brand,
+                request.Model,
+                request.Voltage,
+                request.Frequency,
+                request.PricePerDay,
                 request.RentingPeriodLimit
             );
 
@@ -63,12 +59,8 @@ namespace WebAPI.Controllers.Products
             {
                 return BadRequest(response.Errors);
             }
-           
             return NoContent();
         }
-
-
-                //   ******* USAR QUERYSTRING - NÃO DÁ PRA USAR O MESMO ENDPOINT
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
@@ -79,7 +71,6 @@ namespace WebAPI.Controllers.Products
             {
                 return NotFound();
             }
-            
             return Ok(product);
         }
 
@@ -113,43 +104,8 @@ namespace WebAPI.Controllers.Products
             {
                 return NotFound();
             }
-            
             return Ok(product.OrderBy(x => x.Name));
         }
-
-
-        // [HttpPatch("{id}")]
-        // public IActionResult UpdateProduct(Guid id, [FromBody] JsonPatchDocument<Product> model)
-        // {
-        //     StringValues userId;
-        //     if (!Request.Headers.TryGetValue("UserId", out userId))
-        //     {
-        //         return Unauthorized();
-        //     }
-
-        //     var user = _usersService.GetById(Guid.Parse(userId));
-
-        //     if (user == null)
-        //     {
-        //         return Unauthorized();
-        //     }
-
-        //     if (user.Profile != UserProfile.Admin)
-        //     {
-        //         return Unauthorized();
-        //     }
-
-        //     var product = _productsService.GetById(id);
-        //     if (product == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     _productsService.Modify(id);
-        //     return NoContent();
-            
-        // }
-
 
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(Guid id, [FromBody] CreateProductRequest request)
@@ -166,7 +122,6 @@ namespace WebAPI.Controllers.Products
             {
                 return Unauthorized();
             }
-
             if (user.Profile != UserProfile.Admin)
             {
                 return Unauthorized();
@@ -185,11 +140,7 @@ namespace WebAPI.Controllers.Products
             product.Model = request.Model;
             product.Voltage  = request.Voltage;
             product.Frequency  = request.Frequency;
-            product.PricePerHour = request.PricePerHour;
             product.PricePerDay = request.PricePerDay;
-            product.PricePerDayByWeek = request.PricePerDayByWeek;
-            product.PricePerDayByBiweekly = request.PricePerDayByBiweekly;
-            product.PricePerDayByMonth = request.PricePerDayByMonth;
             product.RentingPeriodLimit = request.RentingPeriodLimit;
 
             _productsService.Modify(product);

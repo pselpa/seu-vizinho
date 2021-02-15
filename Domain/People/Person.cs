@@ -8,17 +8,17 @@ namespace Domain.People
     // Abstract, pois não devemos instanciar a classe person. Ela é apenas um modelo.
     public abstract class Person : Entity
     {
-        public string Name { get; protected set; }
-        public string CPF { get; protected set; }
-        public string Email { get; protected set; }
-        public string Phone { get; protected set; }
-        public string State { get; protected set; }
-        public string City { get; protected set; }
-        public string District { get; protected set; }
-        public string ZipCode { get; protected set; }
-        public string HouseNumber { get; protected set; }
-        public string AddressComplement { get; protected set; }
-        public string Password { get; protected set; }
+        public string Name { get; set; }
+        public string CPF { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public string ZipCode { get; set; }
+        public string HouseNumber { get; set; }
+        public string AddressComplement { get; set; }
+        public string Password { get; set; }
 
         public Person(
             string name,
@@ -28,7 +28,7 @@ namespace Domain.People
             string state,
             string city,
             string district,
-            string zipcode,
+            string zipCode,
             string houseNumber,
             string addressComplement,
             string password
@@ -41,7 +41,7 @@ namespace Domain.People
             State = state;
             City = city;
             District = district;
-            ZipCode = zipcode;
+            ZipCode = zipCode;
             HouseNumber = houseNumber;
             AddressComplement = addressComplement;
             Password = password;
