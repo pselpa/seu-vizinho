@@ -68,6 +68,11 @@ namespace Domain.Products
             return _productsRepository.Get(id);
         }
 
+        public void Modify(Product product)
+        {
+            _productsRepository.Modify(product);
+        }
+
         public void Remove(Guid id)
         {
             var product = new Product(id);

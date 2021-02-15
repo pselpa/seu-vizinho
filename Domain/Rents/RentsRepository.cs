@@ -34,6 +34,11 @@ namespace Domain.Rents
             return _repository.Get(id);
         }
 
+        public void Modify(Rent entity)
+        {
+            _repository.Modify(entity);
+        }
+
         public void Remove(Rent entity)
         {
             _repository.Remove(entity);

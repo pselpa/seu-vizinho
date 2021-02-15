@@ -13,6 +13,8 @@ namespace Domain.Common
 
         T Get(Guid id);
 
+        void Modify(T entity);
+
         void Remove(T entity);
     }
 }

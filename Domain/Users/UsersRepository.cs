@@ -33,6 +33,11 @@ namespace Domain.Users
             return _repository.Get(id);
         }
 
+        public void Modify(User entity)
+        {
+            _repository.Modify(entity);
+        }
+
         public void Remove(User entity)
         {
             _repository.Remove(entity);

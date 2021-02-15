@@ -33,6 +33,11 @@ namespace Domain.Products
             return _repository.Get(id);
         }
 
+        public void Modify(Product entity)
+        {
+            _repository.Modify(entity);
+        }
+
         public void Remove(Product entity)
         {
             _repository.Remove(entity);

@@ -42,6 +42,24 @@ namespace Infra
             }
         }
 
+        // public void Modify(T entity)
+        // {
+        //     using (var db = new SeuVizinhoContext())
+        //     {
+        //         db.Set<T>().Update(entity);
+        //         db.SaveChanges();
+        //     }
+        // }
+
+        public void Modify(T entity)
+        {
+            using (var db = new SeuVizinhoContext())
+            {
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public void Remove(T entity)
         {
             using (var db = new SeuVizinhoContext())

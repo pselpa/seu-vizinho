@@ -4,6 +4,8 @@ using Domain.Products;
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace WebAPI.Controllers.Products
 {
@@ -83,9 +85,10 @@ namespace WebAPI.Controllers.Products
 
 
         [HttpGet()]
-        public IActionResult GetByParameter([FromQuery] Dictionary<string, string> model)   // Alterar para pesquisar por parte do nome
+        public IActionResult GetByParameter([FromQuery] Dictionary<string, string> model)
         {
-            var product = _productsService.GetAll(x => {
+            var product = _productsService.GetAll(x => 
+            {
                 bool matches = true;
                 if (model.TryGetValue("name", out string name)) 
                 {
@@ -111,7 +114,87 @@ namespace WebAPI.Controllers.Products
                 return NotFound();
             }
             
-            return Ok(product);
+            return Ok(product.OrderBy(x => x.Name));
+        }
+
+
+        // [HttpPatch("{id}")]
+        // public IActionResult UpdateProduct(Guid id, [FromBody] JsonPatchDocument<Product> model)
+        // {
+        //     StringValues userId;
+        //     if (!Request.Headers.TryGetValue("UserId", out userId))
+        //     {
+        //         return Unauthorized();
+        //     }
+
+        //     var user = _usersService.GetById(Guid.Parse(userId));
+
+        //     if (user == null)
+        //     {
+        //         return Unauthorized();
+        //     }
+
+        //     if (user.Profile != UserProfile.Admin)
+        //     {
+        //         return Unauthorized();
+        //     }
+
+        //     var product = _productsService.GetById(id);
+        //     if (product == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     _productsService.Modify(id);
+        //     return NoContent();
+            
+        // }
+
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateProduct(Guid id, [FromBody] CreateProductRequest request)
+        {
+            StringValues userId;
+            if (!Request.Headers.TryGetValue("UserId", out userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Profile != UserProfile.Admin)
+            {
+                return Unauthorized();
+            }
+
+            var product = _productsService.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.Accessories = request.Accessories;
+            product.Brand = request.Brand;
+            product.Model = request.Model;
+            product.Voltage  = request.Voltage;
+            product.Frequency  = request.Frequency;
+            product.PricePerHour = request.PricePerHour;
+            product.PricePerDay = request.PricePerDay;
+            product.PricePerDayByWeek = request.PricePerDayByWeek;
+            product.PricePerDayByBiweekly = request.PricePerDayByBiweekly;
+            product.PricePerDayByMonth = request.PricePerDayByMonth;
+            product.RentingPeriodLimit = request.RentingPeriodLimit;
+
+            _productsService.Modify(product);
+            return NoContent();
+            
         }
 
 

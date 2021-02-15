@@ -27,6 +27,8 @@ namespace Domain.Products
 
         Product GetById(Guid id);
 
+        void Modify(Product product); // ARRUMAR ID
+
         void Remove(Guid id);
     }
     
