@@ -3,6 +3,7 @@ using Domain.Users;
 using Domain.Rents;
 using Domain.Products;
 using System.Reflection;
+using System;
 
 namespace Infra
 {
@@ -18,7 +19,11 @@ namespace Infra
         {
         // Initial Catalog = nome do banco de dados que será criado
         // PWD = Password
-        optionsBuilder.UseSqlServer("Data Source=localhost;User Id=sa;PWD=some(!)Password;Initial Catalog=SeuVizinho");
+        optionsBuilder.UseSqlServer("Data Source=localhost;User Id=sa;PWD=some(!)Password;Initial Catalog=SeuVizinho", builder => 
+        {
+            builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+        });
+        base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

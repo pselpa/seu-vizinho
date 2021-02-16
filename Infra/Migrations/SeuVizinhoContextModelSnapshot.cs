@@ -71,9 +71,6 @@ namespace Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("AmountOfDays")
-                        .HasColumnType("time");
-
                     b.Property<DateTime>("ContractEndDate")
                         .HasColumnType("datetime2");
 
@@ -97,10 +94,6 @@ namespace Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("RentedProductId");
 
                     b.ToTable("Rents");
                 });
@@ -172,7 +165,7 @@ namespace Infra.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d081529d-4525-4474-b5a4-96cab0d80f90"),
+                            Id = new Guid("23f72256-587a-414f-98af-15999e74662b"),
                             AddressComplement = "Casa",
                             CPF = "24068108013",
                             City = "Blumenau",
@@ -186,25 +179,6 @@ namespace Infra.Migrations
                             State = "SC",
                             ZipCode = "89000000"
                         });
-                });
-
-            modelBuilder.Entity("Domain.Rents.Rent", b =>
-                {
-                    b.HasOne("Domain.Users.User", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Products.Product", "RentedProduct")
-                        .WithMany()
-                        .HasForeignKey("RentedProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("RentedProduct");
                 });
 #pragma warning restore 612, 618
         }

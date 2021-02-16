@@ -8,17 +8,17 @@ namespace Domain.Rents
     public interface IRentsService
     {
         CreatedRentDTO Create(
-            User customer,
             Guid customerId,
-            Product rentedProduct,
             Guid rentedProductId,
             DateTime date,
             DateTime contractStartDate,
             DateTime contractEndDate,
-            TimeSpan amountOfDays,
-            double rentalValue,
             string observation
         );
+
+        double GetAmountOfDays(DateTime ContractStartDate, DateTime ContractEndDate);
+
+        double CalculateRent(Guid productId, DateTime ContractStartDate, DateTime ContractEndDate);
 
         IEnumerable<Rent> GetAll(Func<Rent, bool> predicate);
 

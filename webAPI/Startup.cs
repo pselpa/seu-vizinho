@@ -59,6 +59,8 @@ namespace webAPI
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IRentsRepository, RentsRepository>();
+            services.AddScoped<IRentsService, RentsService>();
 
             services.AddSwaggerGen(c =>
             {

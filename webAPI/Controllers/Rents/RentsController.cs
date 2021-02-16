@@ -36,15 +36,11 @@ namespace WebAPI.Controllers.Rents
             }
 
             var response = _rentsService.Create(
-                request.Customer,
                 request.CustomerId,
-                request.RentedProduct,
                 request.RentedProductId,
                 request.Date,
                 request.ContractStartDate,
                 request.ContractEndDate,
-                request.AmountOfDays,
-                request.RentalValue,
                 request.Observation
             );
 
@@ -52,7 +48,6 @@ namespace WebAPI.Controllers.Rents
             {
                 return BadRequest(response.Errors);
             }
-
             return NoContent();
         }
 
@@ -96,16 +91,14 @@ namespace WebAPI.Controllers.Rents
                 return NotFound();
             }
 
-            rent.Customer = request.Customer;
             rent.CustomerId = request.CustomerId;
-            rent.RentedProduct = request.RentedProduct;
             rent.RentedProductId = request.RentedProductId;
             rent.Date = request.Date;
             rent.ContractStartDate = request.ContractStartDate;
             rent.ContractEndDate = request.ContractEndDate;
-            rent.AmountOfDays = request.AmountOfDays;
-            rent.RentalValue = request.RentalValue;
-            rent.RentalValue = request.RentalValue;
+            rent.Observation = request.Observation;
+
+            rent.RentalValue = _rentsService.CalculateRent(request.RentedProductId, request.ContractStartDate, request.ContractEndDate);
             
             _rentsService.Modify(rent);
             return NoContent();

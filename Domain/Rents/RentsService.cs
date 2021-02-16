@@ -14,28 +14,21 @@ namespace Domain.Rents
         }
 
         public CreatedRentDTO Create(
-            User customer,
             Guid customerId,
-            Product rentedProduct,
             Guid rentedProductId,
             DateTime date,
             DateTime contractStartDate,
             DateTime contractEndDate,
-            TimeSpan amountOfDays,
-            double rentalValue,
             string observation
         )
         {
             var rent = new Rent(
-                customer,
                 customerId,
-                rentedProduct,
                 rentedProductId,
                 date,
                 contractStartDate,
                 contractEndDate,
-                amountOfDays,
-                rentalValue,
+                CalculateRent(rentedProductId, contractStartDate, contractEndDate),
                 observation
             );
             var RentValidation = rent.Validate();
@@ -45,8 +38,22 @@ namespace Domain.Rents
                 _rentsRepository.Add(rent);
                 return new CreatedRentDTO(rent.Id);
             }
-
             return new CreatedRentDTO(RentValidation.errors);
+        } 
+
+        public double GetAmountOfDays(DateTime ContractStartDate, DateTime ContractEndDate)
+        {
+            TimeSpan amountOfDays = ContractEndDate - ContractStartDate;
+            return amountOfDays.Days;
+        }
+
+        public double CalculateRent(Guid productId, DateTime ContractStartDate, DateTime ContractEndDate)
+        {
+            var product = new Product(productId);
+
+            var amountOfDays = GetAmountOfDays(ContractEndDate, ContractStartDate);
+            var result = product.PricePerDay * amountOfDays;
+            return result;            
         }
 
         public IEnumerable<Rent> GetAll(Func<Rent, bool> predicate)
