@@ -8,9 +8,12 @@ namespace Domain.Rents
     public class RentsService : IRentsService
     {
         private readonly IRentsRepository _rentsRepository;
-        public RentsService(IRentsRepository rentsRepository)
+        private readonly IProductsRepository _productsRepository;
+
+        public RentsService(IRentsRepository rentsRepository, IProductsRepository productsRepository)
         {
             _rentsRepository = rentsRepository;
+            _productsRepository = productsRepository;
         }
 
         public CreatedRentDTO Create(
@@ -49,9 +52,9 @@ namespace Domain.Rents
 
         public double CalculateRent(Guid productId, DateTime ContractStartDate, DateTime ContractEndDate)
         {
-            var product = new Product(productId);
+            var product = _productsRepository.Get(productId);
 
-            var amountOfDays = GetAmountOfDays(ContractEndDate, ContractStartDate);
+            var amountOfDays = GetAmountOfDays(ContractStartDate, ContractEndDate);
             var result = product.PricePerDay * amountOfDays;
             return result;            
         }
