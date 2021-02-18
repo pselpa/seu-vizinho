@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Domain.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers.Auth
 {

@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Domain.Authentication;
 
 namespace webAPI
 {
@@ -61,6 +62,7 @@ namespace webAPI
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IRentsRepository, RentsRepository>();
             services.AddScoped<IRentsService, RentsService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             services.AddSwaggerGen(c =>
             {
